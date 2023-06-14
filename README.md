@@ -113,7 +113,7 @@ If you have the GitHub CLI installed, you can create the PR with the following c
 gh pr create --assignee @me --title "$(git log --format=%s -n 1)" --body "$(git log --format=%b -n 1)"
 ```
 
-If not, open the branch in your browser, and create the pull request from the GitHub web UI. Attention, do not merge directly into `main`, we will use Terraform & Atlantis to apply the changes.
+If not, open the branch in your browser, and create the pull request from the GitHub web UI.
 
 ### How to access your new application
 
