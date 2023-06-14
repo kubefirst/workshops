@@ -34,14 +34,14 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: flappykray
-  namespace: flappykray
+  name: flappy-kray
+  namespace: kubefirst
 spec:
   routes:
     - kind: Rule
-      match: Host(`flappykray.kubefirst.dev`)
+      match: Host(`flappy-kray.kubefirst.dev`)
       services:
-        - name: flappykray
+        - name: flappy-kray
           port: 80
   tls:
-    secretName: flappykray-tls
+    secretName: flappy-kray-tls
