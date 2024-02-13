@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: zero-wave-zero-sleep
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  template:
+    spec:
+      serviceAccountName: argocd-server
+      containers:
+      - name: sleep
+        image: ubuntu:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          sleep 30
+      restartPolicy: Never
+  backoffLimit: 1
