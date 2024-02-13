@@ -1,9 +1,11 @@
 ```sh
-k3d cluster create kubefirst --agents "1" --agents-memory "4096m"
 
-# todo  https://docs.k3s.io/helm#automatically-deploying-manifests-and-helm-charts
-# consider creating a kubernetes job at a URL that will bootstrap this through a manifest (wrap it in a helm chart?)
-kubectl kustomize https://github.com/kubefirst/manifests/argocd/demo\?ref\=main | kubectl apply -f -
+git@github.com:kubefirst/workshops.git
+
+cd workshops
+
+k3d cluster create kubefirst --agents "1" --agents-memory "4096m" \
+    --volume $PWD/manifests/bootstrap-k3d.yaml:/var/lib/rancher/k3s/server/manifests/bootstrap-k3d.yaml
 
 # get the argocd root password
 # visit the argocd ui
