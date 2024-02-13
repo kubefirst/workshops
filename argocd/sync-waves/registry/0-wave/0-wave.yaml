@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: wave-one-sleep
+  name: zero-wave-zero-sleep
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
