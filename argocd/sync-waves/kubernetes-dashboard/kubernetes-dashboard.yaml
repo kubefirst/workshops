@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ten-sync-wave
+  name: kubernetes-dashboard-sync-waves
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: '10'
