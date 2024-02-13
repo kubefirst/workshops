@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/kubefirst/workshops.git
     path: argocd/sync-waves/registry
-    targetRevision: sync-waves
+    targetRevision: HEAD
   destination:
     name: in-cluster
     namespace: argocd
