@@ -10,8 +10,7 @@ kubectl kustomize https://github.com/kubefirst/manifests/argocd/demo\?ref\=main 
 # new shell helper
 export KUBECONFIG=$(k3d kubeconfig write kubefirst) 
 
-# TODO need to adjust this to use main or a tag
-kubectl apply -f https://raw.githubusercontent.com/kubefirst/workshops/sync-waves/argocd/sync-waves/registry/registry.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubefirst/workshops/main/argocd/sync-waves/registry/registry.yaml
 
 # watch the glory
 ```
