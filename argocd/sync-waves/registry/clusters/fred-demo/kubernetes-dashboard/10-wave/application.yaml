@@ -14,23 +14,25 @@ spec:
     helm:
       releaseName: kubernetes-dashboard
       values: |
-        ingress:
-          enabled: true
-          hosts:
-          - dashboard.freegitopsmagic.com
-          ingressClassName: nginx
-          pathType: ImplementationSpecific
-          secretName: kubernetes-dashboard-tls
-          issuer:
-            name: selfsigned
-            scope: cluster
-          labels: {}
-          annotations: {}
-          paths:
-            web: /
-            api: /api
+        app:
+          ingress:
+            enabled: true
+            hosts:
+            - dashboard.freegitopsmagic.com
+            ingressClassName: nginx
+            pathType: ImplementationSpecific
+            secretName: kubernetes-dashboard-tls
+            issuer:
+              name: selfsigned
+              scope: cluster
+            labels: {}
+            annotations:
+              cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+            paths:
+              web: /
+              api: /api
   destination:
-    server: 'https://kubernetes.default.svc'
+    name: in-cluster
     namespace: kubernetes-dashboard
   # syncPolicy:
   #   automated:
