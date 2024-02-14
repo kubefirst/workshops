@@ -62,7 +62,29 @@ resource "kubernetes_cluster_role_binding" "example" {
   }
 }
 
+resource "kubernetes_job" "wait" {
+  metadata {
+    name = "wait-for-cluster-ready"
+  }
+  spec {
+    template {
+      metadata {}
+      spec {
+        container {
+          name    = "wait"
+          image   = "ubuntu:latest"
+          command = ["sh", "-c", "sleep 15"]
+        }
+        restart_policy = "Never"
+      }
+    }
+    backoff_limit = 2
+  }
+  wait_for_completion = true
+}
+
 resource "kubernetes_job" "argocd_install" {
+  depends_on = [ kubernetes_job.wait ]
   metadata {
     name = "kustomize-apply-argocd"
   }
@@ -84,6 +106,7 @@ resource "kubernetes_job" "argocd_install" {
 }
 
 resource "kubernetes_job" "argocd_wait" {
+  depends_on = [ kubernetes_job.argocd_install ]
   metadata {
     name = "wait-for-apply-argocd"
   }
@@ -91,6 +114,7 @@ resource "kubernetes_job" "argocd_wait" {
     template {
       metadata {}
       spec {
+        active_deadline_seconds = 120
         container {
           name    = "argocd-install"
           image   = "bitnami/kubectl:1.25.12"
@@ -101,7 +125,7 @@ resource "kubernetes_job" "argocd_wait" {
     }
     backoff_limit = 2
   }
-  wait_for_completion = true
+  wait_for_completion = false
 }
 
 resource "kubernetes_namespace_v1" "external_dns" {
