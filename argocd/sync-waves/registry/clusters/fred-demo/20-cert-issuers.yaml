@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/kubefirst/workshops.git
-    path: 2024-austin/registry-test/clusters/fred-demo/cert-issuers
+    path: argocd/sync-waves/registry/clusters/fred-demo/cert-issuers
     targetRevision: sync-waves
   destination:
     name: in-cluster
