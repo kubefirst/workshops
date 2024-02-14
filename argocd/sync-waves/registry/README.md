@@ -12,7 +12,7 @@ kubectl -n argocd get secret/argocd-initial-admin-secret -ojsonpath="{.data.pass
 #! <freegitopsmagic.com> address this token 
 #! targetRevision: sync-waves
 
-kubectl apply -f https://raw.githubusercontent.com/kubefirst/workshops/sync-waves/argocd/sync-waves/registry/registry.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubefirst/workshops/tree/sync-waves/argocd/sync-waves/registry/registry.yaml
 
 # watch the registry application in the argocd ui
 ```

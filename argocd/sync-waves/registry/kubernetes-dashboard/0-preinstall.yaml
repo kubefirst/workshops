@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/kubefirst/workshops.git
-    path: argocd/sync-waves/kubernetes-dashboard/preinstall
+    path: argocd/sync-waves/registry/kubernetes-dashboard/preinstall
     targetRevision: HEAD
   destination:
     name: in-cluster
