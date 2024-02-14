@@ -3,12 +3,20 @@ kind: Application
 metadata:
   name: kubernetes-dashboard
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: '10'
 spec:
   project: default
   source:
     repoURL: 'https://kubernetes.github.io/dashboard'
     targetRevision: 6.0.8
     chart: kubernetes-dashboard
+    helm:
+      releaseName: kubernetes-dashboard
+      # values: |
+      #   serviceAccount:
+      #     create: true
+      #     name: kubernetes-dashboard
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kubernetes-dashboard

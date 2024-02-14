@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubernetes-dashboard-components
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: '30'
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/kubefirst/navigate.git
+    path: argocd/sync-waves/registry/clusters/fred-demo/kubernetes-dashboard
+    targetRevision: HEAD
+  destination:
+    name: in-cluster
+    namespace: kubernetes-dashboard
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
