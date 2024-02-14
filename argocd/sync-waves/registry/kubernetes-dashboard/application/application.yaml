@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubernetes-dashboard
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: '10'
+spec:
+  project: default
+  source:
+    repoURL: 'https://kubernetes.github.io/dashboard'
+    targetRevision: 6.0.8
+    chart: kubernetes-dashboard
+    helm:
+      releaseName: kubernetes-dashboard
+      values: |
+        app:
+          ingress:
+            enabled: true
+            hosts:
+            - dashboard.freegitopsmagic.com
+            ingressClassName: nginx
+            pathType: ImplementationSpecific
+            secretName: kubernetes-dashboard-tls
+            issuer:
+              name: selfsigned
+              scope: cluster
+            labels: {}
+            annotations:
+              cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+            paths:
+              web: /
+              api: /api
+  destination:
+    name: in-cluster
+    namespace: kubernetes-dashboard
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #   syncOptions:
+  #     - CreateNamespace=true
