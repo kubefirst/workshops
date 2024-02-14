@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/kubefirst/workshops.git
     path: argocd/sync-waves/registry/clusters/fred-demo/kubernetes-dashboard
-    targetRevision: HEAD
+    targetRevision: sync-waves
   destination:
     name: in-cluster
     namespace: kubernetes-dashboard

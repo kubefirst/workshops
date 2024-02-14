@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/kubefirst/workshops.git
     path: 2024-austin/registry-test/clusters/fred-demo/cert-issuers
-    targetRevision: HEAD
+    targetRevision: sync-waves
   destination:
     name: in-cluster
     namespace: cert-manager
