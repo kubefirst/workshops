@@ -13,10 +13,22 @@ spec:
     chart: kubernetes-dashboard
     helm:
       releaseName: kubernetes-dashboard
-      # values: |
-      #   serviceAccount:
-      #     create: true
-      #     name: kubernetes-dashboard
+      values: |
+        ingress:
+          enabled: true
+          hosts:
+          - dashboard.freegitopsmagic.com
+          ingressClassName: nginx
+          pathType: ImplementationSpecific
+          secretName: kubernetes-dashboard-tls
+          issuer:
+            name: selfsigned
+            scope: cluster
+          labels: {}
+          annotations: {}
+          paths:
+            web: /
+            api: /api
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kubernetes-dashboard
