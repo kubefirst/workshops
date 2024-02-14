@@ -22,7 +22,7 @@ spec:
     chart: ingress-nginx
   destination:
     name: in-cluster
-    namespace: cert-manager
+    namespace: ingress-nginx
   syncPolicy:
     automated:
       prune: true
