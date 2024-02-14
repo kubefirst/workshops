@@ -5,7 +5,7 @@ k3d cluster create kubefirst --agents "1" --agents-memory "4096m" \
 # get the argocd root password
 # visit the argocd ui
 
-kubectl apply -f https://raw.githubusercontent.com/kubefirst/navigate/main/argocd/sync-waves/demo-registry/registry.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubefirst/workshops/main/argocd/sync-waves/demo-registry/registry.yaml
 
 # watch the registry application in the argocd ui
 ```

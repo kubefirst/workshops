@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/kubefirst/navigate.git
+    repoURL: https://github.com/kubefirst/workshops.git
     path: argocd/sync-waves/registry/clusters/fred-demo/kubernetes-dashboard
     targetRevision: HEAD
   destination:
