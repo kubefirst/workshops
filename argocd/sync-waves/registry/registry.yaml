@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: fred-demo-cert-issuers
+  name: registry
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: '20'
+    argocd.argoproj.io/sync-wave: '0'
 spec:
   project: default
   source:
     repoURL: https://github.com/kubefirst/workshops.git
-    path: argocd/sync-waves/registry/clusters/fred-demo/cert-issuers
+    path: argocd/sync-waves/registry
     targetRevision: sync-waves
   destination:
     name: in-cluster
-    namespace: cert-manager
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
